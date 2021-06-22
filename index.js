@@ -11,13 +11,10 @@ const connect = mongoose.connect(url, {
 connect.then(() => {
   console.log("Connected correctly to server");
 
-  const newCampsite = new Campsite({
+  Campsite.create({
     name: "React Lake Campground",
     description: "test",
-  });
-
-  newCampsite
-    .save() // mongoose method that saves document to database - returns promise
+  })
     .then((campsite) => {
       console.log(campsite);
       return Campsite.find(); // returns all documents based on the model as array - promise
