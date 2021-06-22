@@ -2,6 +2,28 @@ const mongoose = require("mongoose"); // import mongoose
 const Schema = mongoose.Schema; // makes short hand to mongoose.Schema function
 
 // instantiates a new object - first arg (required) object contains definition for schema via its properties; second arg - various configuration options
+const commentSchema = new Schema(
+  {
+    rating: {
+      type: Number,
+      min: 1,
+      max: 5,
+      required: true,
+    },
+    text: {
+      type: String,
+      required: true,
+    },
+    author: {
+      type: String,
+      required: true,
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
+
 const campsiteSchema = new Schema(
   {
     name: {
@@ -13,6 +35,7 @@ const campsiteSchema = new Schema(
       type: String,
       required: true,
     },
+    comments: [commentSchema],
   },
   {
     timestamps: true,
